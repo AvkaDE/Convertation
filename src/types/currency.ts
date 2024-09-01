@@ -30,3 +30,5 @@ export interface ICurrencyGetResponse {
   "brl-idr": number;
   "kzt-idr": number;
 }
+
+export type TCurrencyPair = keyof ICurrencyGetResponse;

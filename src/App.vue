@@ -8,6 +8,11 @@
 
 <script setup>
 import LayoutWrapper from "./components/layout/LayoutWrapper.vue";
+import { useCurrencyStore } from "./store/currency";
+
+const currencyStore = useCurrencyStore();
+
+currencyStore.fetchCurrency();
 </script>
 
 <style scoped></style>
