@@ -26,18 +26,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed } from "vue";
 import { useCurrencyStore } from "../store/currency";
+import currencySymbols from "../constants/currencySymbols";
 
 const currencyStore = useCurrencyStore();
 
-const currencySymbols = {
-  usd: "$",
-  eur: "€",
-  rub: "₽",
-};
-
-const mainCurrency = ref<"usd" | "rub" | "eur">("rub");
+const mainCurrency = computed(() => currencyStore.getMainCurrency);
 
 const currencyPairs = computed(() => {
   if (mainCurrency.value === "rub") {
@@ -76,19 +71,6 @@ const currencyPairs = computed(() => {
       firstCurrency: "eur",
     },
   ];
-});
-
-onMounted(async () => {
-  const savedMainPair = localStorage.getItem("currencyMainPair");
-
-  if (
-    savedMainPair &&
-    (savedMainPair === "rub" ||
-      savedMainPair === "eur" ||
-      savedMainPair === "usd")
-  ) {
-    mainCurrency.value = savedMainPair;
-  }
 });
 </script>
 

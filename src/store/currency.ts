@@ -35,14 +35,19 @@ export const useCurrencyStore = defineStore("currency", {
       "brl-idr": 0,
       "kzt-idr": 0,
     },
+    mainCurrency: "usd",
   }),
   getters: {
     getPairs: (state) => state.pairs,
+    getMainCurrency: (state) => state.mainCurrency,
   },
   actions: {
     async fetchCurrency() {
       const apiService = new CurrencyService();
       this.pairs = await apiService.fetchCurrencies();
+    },
+    changeMainCurrency(newVal: "usd" | "rub" | "eur") {
+      this.mainCurrency = newVal;
     },
   },
 });

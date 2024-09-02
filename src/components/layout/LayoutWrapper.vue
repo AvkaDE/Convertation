@@ -1,22 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div class="page-content">
-      <nav class="nav-wrapper">
-        <RouterLink
-          class="nav-link"
-          activeClass="active"
-          :to="{ name: 'main-page' }"
-        >
-          Mainpage
-        </RouterLink>
-        <RouterLink
-          class="nav-link"
-          activeClass="active"
-          :to="{ name: 'convert-page' }"
-        >
-          Convertation page
-        </RouterLink>
-      </nav>
+      <AppHeader />
       <main class="content-wrapper">
         <slot></slot>
       </main>
@@ -24,7 +9,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import AppHeader from "../header/AppHeader.vue";
+</script>
 
 <style lang="scss" scoped>
 .page-wrapper {
@@ -49,29 +36,6 @@
     max-width: 1280px;
     width: 100%;
     height: 100dvh;
-
-    .nav-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-
-      font-size: 24px;
-      line-height: 28px;
-
-      width: 100%;
-
-      .nav-link {
-        color: var(--text-color-primary);
-        transition: color 0.5s;
-
-        &:hover {
-          color: var(--accent-color-green);
-        }
-        &.active {
-          color: var(--accent-color-green);
-        }
-      }
-    }
 
     .content-wrapper {
       flex-grow: 1;
